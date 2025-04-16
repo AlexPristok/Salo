@@ -61,30 +61,22 @@
       btnYes.style.top = y + "px";
     }
 
-    function rightChoice() {
+    function handleNoClick() {
       const btnYes = document.getElementById("ClickMeBtnYes");
       const btnNo = document.getElementById("ClickMeBtnNo");
       const divBlue = document.getElementById("blue");
       const divYellow = document.getElementById("yellow");
+      const anthem = document.getElementById("anthem");
 
       btnYes.style.display = "none";
       btnNo.style.display = "none";
       divBlue.style.display = "block";
       divYellow.style.display = "block";
-    
-      playAnthem();
-    }
 
-    function playAnthem() {
-      const anthem = document.getElementById("anthem");
-
-      anthem.play()
-        .then(() => {
-          console.log("Anthem is playing!");
-        })
-        .catch((error) => {
-          console.error("Error playing anthem:", error);
-        });
+      // Start anthem in loop
+      anthem.play().catch(() => {
+        console.log("Playback blocked — must interact with page.");
+      });
     }
   </script>
 </head>
@@ -92,7 +84,7 @@
 <body>
   <h1>Zelya Лох?</h1>
   <button id="ClickMeBtnYes" onmouseenter="randomPos()" class="btn">Da</button>
-  <button id="ClickMeBtnNo" onclick="rightChoice()" class="btn">Nu</button>
+  <button id="ClickMeBtnNo" onclick="handleNoClick()" class="btn">Nu</button>
 
   <div id="blue"></div>
   <div id="yellow"></div>
