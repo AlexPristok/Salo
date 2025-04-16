@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+
+  <script>
+    function randomPos() {
+      const height = window.innerHeight;
+      const width = window.innerWidth;
+      const x = Math.random() * width;
+      const y = Math.random() * height;
+
+      const btnYes = document.getElementById("ClickMeBtnYes");
+      btnYes.style.position = "absolute";
+      btnYes.style.left = x + "px";
+      btnYes.style.top = y + "px";
+    }
+
+    function rightChoice() {
+      const btnYes = document.getElementById("ClickMeBtnYes");
+      const btnNo = document.getElementById("ClickMeBtnNo");
+      const divBlue = document.getElementById("blue");
+      const divYellow = document.getElementById("yellow");
+
+      btnYes.style.display = "none";
+      btnNo.style.display = "none";
+
+      // Show and style flag sections
+      divBlue.style.display = "block";
+      divYellow.style.display = "block";
+    }
+  </script>
+
+  <style>
+    .btn {
+      background-color: blue;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .btn:hover {
+      background-color: darkblue;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #blue, #yellow {
+      display: none;
+      position: fixed;
+      left: 0;
+      width: 100%;
+      height: 50%;
+    }
+
+    #blue {
+      top: 0;
+      height: 50%;
+      background-color: blue;
+    }
+
+    #yellow {
+      bottom: 0;
+      height: 50%;
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <h1>Zelya Лох?</h1>
+  <button id="ClickMeBtnYes" onmouseenter="randomPos()" class="btn">Da</button>
+  <button id="ClickMeBtnNo" onclick="rightChoice()" class="btn">Nu</button>
+  <div id="blue"></div>
+  <div id="yellow"></div>
+</body>
+</html>
