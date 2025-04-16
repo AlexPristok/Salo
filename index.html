@@ -3,37 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Document</title>
-
-  <script>
-    function randomPos() {
-      const height = window.innerHeight;
-      const width = window.innerWidth;
-      const x = Math.random() * width;
-      const y = Math.random() * height;
-
-      const btnYes = document.getElementById("ClickMeBtnYes");
-      btnYes.style.position = "absolute";
-      btnYes.style.left = x + "px";
-      btnYes.style.top = y + "px";
-    }
-
-    function rightChoice() {
-      const btnYes = document.getElementById("ClickMeBtnYes");
-      const btnNo = document.getElementById("ClickMeBtnNo");
-      const divBlue = document.getElementById("blue");
-      const divYellow = document.getElementById("yellow");
-
-      btnYes.style.display = "none";
-      btnNo.style.display = "none";
-
-      // Show and style flag sections
-      divBlue.style.display = "block";
-      divYellow.style.display = "block";
-    }
-  </script>
+  <title>salo</title>
 
   <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
     .btn {
       background-color: blue;
       color: white;
@@ -48,16 +30,6 @@
       background-color: darkblue;
     }
 
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 50px;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-
     #blue, #yellow {
       display: none;
       position: fixed;
@@ -68,22 +40,85 @@
 
     #blue {
       top: 0;
-      height: 50%;
       background-color: blue;
     }
 
     #yellow {
       bottom: 0;
-      height: 50%;
       background-color: yellow;
     }
+
+    #stopBtn {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 200;
+}
+
+
+    #stopBtn:hover {
+      background-color: darkgreen;
+    }
   </style>
+
+  <script>
+    function randomPos() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const x = Math.random() * width;
+      const y = Math.random() * height;
+      const btnYes = document.getElementById("ClickMeBtnYes");
+      btnYes.style.position = "absolute";
+      btnYes.style.left = x + "px";
+      btnYes.style.top = y + "px";
+    }
+
+    function rightChoice() {
+      const btnYes = document.getElementById("ClickMeBtnYes");
+      const btnNo = document.getElementById("ClickMeBtnNo");
+      const divBlue = document.getElementById("blue");
+      const divYellow = document.getElementById("yellow");
+      const stopBtn = document.getElementById("stopBtn");
+
+      btnYes.style.display = "none";
+      btnNo.style.display = "none";
+      divBlue.style.display = "block";
+      divYellow.style.display = "block";
+
+      stopBtn.style.display = "block";
+    }
+
+    function playAnthem() {
+      const anthem = document.getElementById("anthem");
+      const stopBtn = document.getElementById("stopBtn");
+
+      anthem.play().then(() => {
+        stopBtn.style.display = "none";
+      }).catch(() => {
+        console.log("Playback blocked — must interact with page.");
+      });
+    }
+  </script>
 </head>
+
 <body>
   <h1>Zelya Лох?</h1>
   <button id="ClickMeBtnYes" onmouseenter="randomPos()" class="btn">Da</button>
   <button id="ClickMeBtnNo" onclick="rightChoice()" class="btn">Nu</button>
+
   <div id="blue"></div>
   <div id="yellow"></div>
+
+  <button id="stopBtn" onclick="playAnthem()">Stop</button>
+  <audio id="anthem" src="./sound.mp3"></audio>
 </body>
 </html>
