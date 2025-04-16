@@ -47,27 +47,6 @@
       bottom: 0;
       background-color: yellow;
     }
-
-    #stopBtn {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: green;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 200;
-}
-
-
-    #stopBtn:hover {
-      background-color: darkgreen;
-    }
   </style>
 
   <script>
@@ -87,19 +66,16 @@
       const btnNo = document.getElementById("ClickMeBtnNo");
       const divBlue = document.getElementById("blue");
       const divYellow = document.getElementById("yellow");
-      const stopBtn = document.getElementById("stopBtn");
 
       btnYes.style.display = "none";
       btnNo.style.display = "none";
       divBlue.style.display = "block";
       divYellow.style.display = "block";
-
-      stopBtn.style.display = "block";
+    
     }
 
     function playAnthem() {
       const anthem = document.getElementById("anthem");
-      const stopBtn = document.getElementById("stopBtn");
 
       anthem.play().then(() => {
         stopBtn.style.display = "none";
@@ -118,7 +94,6 @@
   <div id="blue"></div>
   <div id="yellow"></div>
 
-  <button id="stopBtn" onclick="playAnthem()">Stop</button>
-  <audio id="anthem" src="./sound.mp3"></audio>
+  <audio id="anthem" src="./sound.mp3" loop></audio>
 </body>
 </html>
