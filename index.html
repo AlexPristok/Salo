@@ -72,16 +72,19 @@
       divBlue.style.display = "block";
       divYellow.style.display = "block";
     
+      playAnthem();
     }
 
     function playAnthem() {
       const anthem = document.getElementById("anthem");
 
-      anthem.play().then(() => {
-        stopBtn.style.display = "none";
-      }).catch(() => {
-        console.log("Playback blocked — must interact with page.");
-      });
+      anthem.play()
+        .then(() => {
+          console.log("Anthem is playing!");
+        })
+        .catch((error) => {
+          console.error("Error playing anthem:", error);
+        });
     }
   </script>
 </head>
